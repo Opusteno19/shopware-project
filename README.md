@@ -52,3 +52,24 @@ docker rm shopware        # remove it completely (deletes data)
 - Port 80 must be free on your computer. If something else is already using
   port 80, change `-p 80:80` to e.g. `-p 8080:80` and use
   http://localhost:8080 instead.
+
+## Getting my customized version (optional)
+
+By default the steps above give you a fresh, default Shopware install. If
+you want to see the actual shop I customized (header logo/text, and a
+brand navigation menu with Nike / Adidas / Puma / Reebok / Lotto /
+Slazenger, each with Men / Women / Kids sub-categories), restore my saved
+data on top of it:
+
+1. Make sure the container is running (see "How to run it" above) and has
+   finished starting (check `docker logs shopware` for a "READY" message).
+2. From this repo folder, run:
+   ```
+   cd shop-data
+   ./import.sh
+   ```
+3. Refresh http://localhost — you should now see the customized shop.
+
+This works by loading a database backup (`shop-data/database.sql`) and the
+uploaded images (`shop-data/media/`) into your container. It's safe to run
+on a brand-new container; it will overwrite the default demo data.
