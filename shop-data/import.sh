@@ -8,6 +8,9 @@ set -e
 echo "Copying uploaded media files into the container..."
 docker cp media/. shopware:/var/www/html/public/media/
 
+echo "Copying image thumbnails into the container..."
+docker cp thumbnail/. shopware:/var/www/html/public/thumbnail/
+
 echo "Importing database (this can take a minute)..."
 docker exec -i shopware mysql -h127.0.0.1 -uroot -proot shopware < database.sql
 
