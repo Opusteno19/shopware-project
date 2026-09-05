@@ -73,3 +73,18 @@ data on top of it:
 This works by loading a database backup (`shop-data/database.sql`) and the
 uploaded images (`shop-data/media/`) into your container. It's safe to run
 on a brand-new container; it will overwrite the default demo data.
+
+### Already tried this and the site looked unstyled (plain text, no design)?
+
+An earlier version of `import.sh` was missing a step, so the shop's design
+files never got generated. If you already ran it before and your storefront
+looks like plain unformatted text:
+
+1. Get the latest fix: `git pull`
+2. Run the import again (safe to repeat): `cd shop-data && ./import.sh`
+3. Refresh http://localhost.
+
+If it's still unstyled, run this one command directly and refresh again:
+```
+docker exec shopware php bin/console theme:compile
+```
