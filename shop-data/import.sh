@@ -11,6 +11,9 @@ docker cp media/. shopware:/var/www/html/public/media/
 echo "Importing database (this can take a minute)..."
 docker exec -i shopware mysql -h127.0.0.1 -uroot -proot shopware < database.sql
 
+echo "Recompiling theme CSS/JS to match the imported settings..."
+docker exec shopware php bin/console theme:compile
+
 echo "Clearing cache..."
 docker exec shopware php bin/console cache:clear
 
